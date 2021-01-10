@@ -28,7 +28,6 @@ def get_most_danceable(playlist_objects, N):
     # Each is a playlist object with attributes collaborative, description, external_urls,
     # followers, href, id, images, name, owner, public, snapshot_id, tracks, type, uri
     for playlist_obj in playlist_objects:   
-        # print(playlist_obj['name'])     
         track_list = get_track_list(playlist_obj)
         track_list_for_req = []
         for track in track_list:
@@ -41,18 +40,10 @@ def get_most_danceable(playlist_objects, N):
                 if audio_features:
                     danceability = audio_features['danceability']
                     energy = audio_features['energy']
-                    # time_signature = audio_features['time_signature']
                     id = audio_features['id']
                     if danceability and energy and id and id not in [x[1] for x in danceability_track_id_list]:
                         danceability_track_id_list.append((danceability + energy, id))
 
-                #   if len(most_danceable) < N:
-                #       most_danceable[track_id] = danceability
-                #   else: 
-                #       least_id = min(most_danceable, key=most_danceable.get)
-                #       if most_danceable[least_id] < danceability:
-                #           most_danceable[track_id] = danceability
-                #           most_danceable.pop(least_id)
     danceability_track_id_list.sort(reverse = True)
     
     return danceability_track_id_list[0:N]
@@ -82,19 +73,9 @@ def get_track_names(track_list):
     for track_id in track_list:
         song = requests.get(URL + track_id, headers=headers).json()
         names.append(song['name'] + " - " + song['artists'][0]['name'])
-        # print(f"{song['name']}     by: {song['artists'][0]['name']}")
     
     return names
 
-# def create_playlist():
-#     user_id = "maddie.kalil"
-#     endpoint_url = "https://api.spotify.com/v1/users/"+ user_id+ "/playlists"
-#     request_body = json.dumps({
-#         "name": "Code is Lyfe",
-#         "description": "yooo!",
-#         "public": True 
-#     })
-#     response = requests.post(url = endpoint_url, data = request_body, headers=headers)
 
 def get_users_playlists(user_id):
     USER_DATA_URL = BASE_URL + 'users/'+ user_id + '/playlists'
@@ -131,26 +112,12 @@ def get_access_token(client_id, client_secret):
 
 
 def setup():
-    # client_id = str(input('Enter client id'))
-    # client_secret = str(input('Enter client secret'))
+    client_id = '9c2816c9c9a24fc1a51112fd59c74133'
+    client_secret = ''
     access_token = get_access_token(client_id, client_secret)
     global headers
     headers = {
     'Authorization': 'Bearer {token}'.format(token=access_token)
     }
 
-
-if __name__ == "__main__":
-    setup()
-    URL = 'https://api.spotify.com/v1/tracks/'
-    # common = get_common_songs('iamkatefrom2000', 'maddie.kalil', 10)
-    # for track in common:
-    #     song = requests.get(URL + track, headers=headers).json()
-    #     print(song['name'])
-    playlists = get_users_playlists('iamkatefrom2000')
-    danceable = get_most_danceable(playlists, 10)
-    URL = 'https://api.spotify.com/v1/tracks/'
-    # for track_id in danceable.keys():
-    #     song = requests.get(URL + track_id, headers=headers).json()
-    #     print(song['name'])
-    print_track_names([x[1] for x in danceable])    
+   
