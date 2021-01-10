@@ -1,0 +1,13 @@
+#display_songs {
+    color: rgb(218, 228, 238);
+    padding-left: 100px;
+}
+
+body {
+    background-color: #202020;
+    padding-left: 100px;
+}
+
+h1 {
+    color: rgb(218, 228, 238);
+}

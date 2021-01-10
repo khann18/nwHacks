@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+        <title>Dance, dance baby</title>
+      </head>
+    
+<body>
+    <br>
+    <br>
+    <form class="form-inline" action="/common_songs">
+        <div class="form-group mx-sm-3 mb-2">
+          <label class="sr-only">Email</label>
+          <input type="text" class="form-control" id="user1" name="user1" placeholder="Username 1">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <label  class="sr-only">Password</label>
+          <input type="text" class="form-control" id="user2" name="user2" placeholder="Username 2">
+        </div>
+        <button type ="submit" class="btn btn-primary mb-2" onsubmit="common_songs()">Find songs in common</button>
+    </form>
+    <br>
+    <br>
+    <form class="form-inline" action="/party_music">
+        <div class="form-group mx-sm-3 mb-2">
+          <label class="sr-only">Email</label>
+          <input type="text" class="form-control" id="user" name="user" placeholder="Username">
+        </div>
+        <button id = "party" type="submit" class="btn btn-primary mb-2">Get party music</button>
+    </form>
+</body>
+</html>

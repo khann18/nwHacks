@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='songs.css') }}">
+    </head>
+    <body>
+    <h1>{{ message }}</h1>
+    <div id="display_songs">
+    {% for song in songs %}
+                    
+        <p>
+        {{loop.index}}.  {{ song }}
+        </p>
+
+    {% endfor %}
+    </div>
+    </body>
+</html>
